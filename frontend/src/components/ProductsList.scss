@@ -1,0 +1,15 @@
+.products-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 12px;
+  padding-top: 12px;
+}
+
+.products-list--empty {
+  border-radius: 8px;
+  border: 1px dashed #d6d3c8;
+  padding: 16px;
+  text-align: center;
+  color: #7a786c;
+  background: #f9f6ee;
+}
