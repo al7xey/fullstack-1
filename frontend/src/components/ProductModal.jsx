@@ -7,7 +7,6 @@ const initialFormState = {
   description: '',
   price: '',
   stock: '',
-  rating: '',
   imageUrl: ''
 };
 
@@ -23,7 +22,6 @@ function ProductModal({ isOpen, mode, product, onClose, onSubmit }) {
         description: product.description ?? '',
         price: product.price != null ? String(product.price) : '',
         stock: product.stock != null ? String(product.stock) : '',
-        rating: product.rating != null ? String(product.rating) : '',
         imageUrl: product.imageUrl ?? ''
       });
     } else if (isOpen && mode === 'create') {
@@ -51,13 +49,6 @@ function ProductModal({ isOpen, mode, product, onClose, onSubmit }) {
     if (!Number.isFinite(price)) currentErrors.push('Цена должна быть числом');
     if (!Number.isFinite(stock)) currentErrors.push('Количество на складе должно быть числом');
 
-    if (form.rating) {
-      const rating = Number(form.rating);
-      if (!Number.isFinite(rating) || rating < 0 || rating > 5) {
-        currentErrors.push('Рейтинг должен быть числом от 0 до 5');
-      }
-    }
-
     setErrors(currentErrors);
     return currentErrors.length === 0;
   };
@@ -72,7 +63,6 @@ function ProductModal({ isOpen, mode, product, onClose, onSubmit }) {
       description: form.description.trim(),
       price: Number(form.price),
       stock: Number(form.stock),
-      rating: form.rating ? Number(form.rating) : undefined,
       imageUrl: form.imageUrl.trim() || undefined
     };
 
@@ -173,33 +163,16 @@ function ProductModal({ isOpen, mode, product, onClose, onSubmit }) {
             </div>
           </div>
 
-          <div className="modal__row">
-            <div className="modal__field">
-              <label htmlFor="rating">Рейтинг (0-5)</label>
-              <input
-                id="rating"
-                name="rating"
-                type="number"
-                min="0"
-                max="5"
-                step="0.1"
-                value={form.rating}
-                onChange={handleChange}
-                placeholder="4.5"
-              />
-            </div>
-
-            <div className="modal__field">
-              <label htmlFor="imageUrl">URL изображения</label>
-              <input
-                id="imageUrl"
-                name="imageUrl"
-                type="url"
-                value={form.imageUrl}
-                onChange={handleChange}
-                placeholder="https://..."
-              />
-            </div>
+          <div className="modal__field">
+            <label htmlFor="imageUrl">URL изображения</label>
+            <input
+              id="imageUrl"
+              name="imageUrl"
+              type="url"
+              value={form.imageUrl}
+              onChange={handleChange}
+              placeholder="https://..."
+            />
           </div>
 
           <div className="modal__footer">

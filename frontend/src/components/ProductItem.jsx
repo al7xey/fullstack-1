@@ -24,12 +24,6 @@ function ProductItem({ product, onEdit, onDelete }) {
         <span className="product-item__stock">На складе: {product.stock}</span>
       </div>
 
-      {product.rating != null && (
-        <div className="product-item__rating">
-          Рейтинг: {product.rating.toFixed(1)} / 5
-        </div>
-      )}
-
       {product.imageUrl && (
         <div className="product-item__image-wrapper">
           <img
@@ -61,4 +55,3 @@ function ProductItem({ product, onEdit, onDelete }) {
 }
 
 export default ProductItem;
-
